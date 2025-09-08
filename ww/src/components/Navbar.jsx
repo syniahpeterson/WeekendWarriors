@@ -1,4 +1,4 @@
-// ...existing code...
+// Navbar component for site navigation, includes animated brand and responsive menu
 import "../styles/Navbar.css";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,10 +7,14 @@ import { FiMenu, FiX } from "react-icons/fi";
 import useActiveSection from "../hooks/useActiveSection";
 
 const Navbar = () => {
+  // State for mobile menu open/close
   const [isOpen, setIsOpen] = useState(false);
+  // Section IDs for navigation and active highlighting
   const sectionIds = ["home", "services", "about", "contact"];
+  // Track which section is currently active
   const activeId = useActiveSection(sectionIds);
 
+  // Color cycle for animated brand icon
   const colorCycle = [
     "var(--color-green-accent)",
     "var(--color-accent-gold)",
@@ -20,6 +24,7 @@ const Navbar = () => {
   ];
 
   return (
+    // Main navigation bar
     <nav className="navbar" role="navigation" aria-label="Main Navigation">
       {/* Brand */}
       <a
@@ -27,6 +32,7 @@ const Navbar = () => {
         className="navbar__brand"
         onClick={() => setIsOpen(false)}
       >
+        {/* Animated brand icon */}
         <motion.div
           className="navbar__icon"
           initial={{ x: -200, opacity: 0, rotate: -20 }}
@@ -44,6 +50,7 @@ const Navbar = () => {
         >
           <MdOutlineAgriculture />
         </motion.div>
+        {/* Site title */}
         <h2 className="navbar__title">Weekend Warriors</h2>
       </a>
 

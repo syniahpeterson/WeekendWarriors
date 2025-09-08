@@ -1,4 +1,4 @@
-/* ...existing code... */
+/* index.css: Reset and base styles for the Weekend Warriors app */
 * {
   margin: 0;
   padding: 0;
@@ -6,11 +6,13 @@
 }
 
 body {
+  /* Set main font and background color */
   font-family: "Inter", sans-serif;
   background-color: var(--color-bg-dark);
   color: var(--color-text-main);
 }
 
 html {
+  /* Enable smooth scrolling for anchor links */
   scroll-behavior: smooth;
 }

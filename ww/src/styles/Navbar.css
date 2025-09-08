@@ -1,4 +1,4 @@
-/* ...existing code... */
+/* Navbar.css: Styles for the navigation bar and responsive menu */
 .navbar {
   display: flex;
   align-items: center;
@@ -27,7 +27,6 @@
   color: var(--color-text-main);
 }
 
-/* ...existing code... */
 .navbar__links {
   display: flex;
   gap: 1.5rem;
@@ -49,7 +48,6 @@
   color: var(--color-accent-gold);
 }
 
-/* ...existing code... */
 .navbar__toggle {
   display: none;
   background: none;
@@ -59,24 +57,21 @@
   cursor: pointer;
 }
 
-/* ...existing code... */
+.navbar__links a.active,
+.navbar__dropdown a.active {
+  color: var(--color-accent-gold);
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .navbar__links {
     display: none;
-  }
-
-  /* ...existing code... */
-  .navbar__links a.active,
-  .navbar__dropdown a.active {
-    color: var(--color-accent-gold);
-    font-weight: 600;
   }
 
   .navbar__toggle {
     display: block;
   }
 
-  /* ...existing code... */
   .navbar__dropdown {
     position: absolute;
     top: 100%;
@@ -108,7 +103,6 @@
   }
 }
 
-/* ...existing code... */
 .navbar__links a:focus-visible,
 .navbar__dropdown a:focus-visible,
 .navbar__toggle:focus-visible,
@@ -117,7 +111,6 @@
   outline-offset: 4px;
 }
 
-/* ...existing code... */
 .navbar__links a,
 .navbar__dropdown a,
 .navbar__toggle,
