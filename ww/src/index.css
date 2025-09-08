@@ -1,37 +1,16 @@
-/* index.css */
+/* ...existing code... */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  /* Dark theme background */
-  --background-dark: #1B1B1B;
-  --background-light: #242424;
-  --text-light: #EAEAEA;
-
-  /* Primary brand colors */
-  --green-primary: #2e7d32; /* Forest Green */
-  --green-light: #66bb6a; /* Fresh Grass Green */
-
-  /* Secondary accent colors */
-  --yellow-accent: #fdd835; /* Sunny Yellow */
-  --blue-accent: #4fc3f7; /* Sky Blue */
-
-  /* Neutral colors */
-  --neutral-light: #f9f9f9; /* Off-white / background */
-  --neutral-dark: #333333; /* Dark text / headings */
-  --neutral-mid: #777777; /* Subtext, muted labels */
-}
-
 body {
   font-family: "Inter", sans-serif;
-  color: var(--text-light);
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-main);
 }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+html {
+  scroll-behavior: smooth;
 }

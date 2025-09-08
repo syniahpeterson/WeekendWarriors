@@ -1,22 +1,36 @@
-/* App.css */
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/* ...existing code... */
+
+/* ...existing code... */
+:root {
+  /* ...existing code... */
+  --color-bg-dark: #0f1111;
+  --color-bg-secondary: #1a1d1a;
+
+  /* ...existing code... */
+  --color-green-primary: #14532d;
+  --color-green-accent: #22c55e;
+  --color-green-light: #bbf7d0;
+
+  /* ...existing code... */
+  --color-text-main: #f9fafb;
+  --color-text-muted: #9ca3af;
+
+  /* ...existing code... */
+  --color-accent-gold: #facc15;
 }
 
-main {
-  flex: 1;
+/* ...existing code... */
+button {
+  background-color: var(--color-green-primary);
+  color: var(--color-text-main);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
 
-section {
-  padding: 4rem 0;
-}
-
-section:nth-child(odd) {
-  background-color: var(--background-dark);
-}
-
-section:nth-child(even) {
-  background-color: var(--background-light);
+button:hover {
+  background-color: var(--color-green-accent);
+  transform: translateY(-2px);
 }
