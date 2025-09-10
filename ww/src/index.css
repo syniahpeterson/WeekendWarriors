@@ -15,4 +15,5 @@ body {
 html {
   /* Enable smooth scrolling for anchor links */
   scroll-behavior: smooth;
+  scroll-padding-top: 50px;
 }

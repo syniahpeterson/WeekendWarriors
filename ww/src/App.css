@@ -1,25 +1,16 @@
-/* ...existing code... */
-
-/* ...existing code... */
+/* Color theme variables */
 :root {
-  /* ...existing code... */
   --color-bg-dark: #0f1111;
   --color-bg-secondary: #1a1d1a;
-
-  /* ...existing code... */
   --color-green-primary: #14532d;
   --color-green-accent: #22c55e;
   --color-green-light: #bbf7d0;
-
-  /* ...existing code... */
   --color-text-main: #f9fafb;
   --color-text-muted: #9ca3af;
-
-  /* ...existing code... */
   --color-accent-gold: #facc15;
 }
 
-/* ...existing code... */
+/* Button styles */
 button {
   background-color: var(--color-green-primary);
   color: var(--color-text-main);

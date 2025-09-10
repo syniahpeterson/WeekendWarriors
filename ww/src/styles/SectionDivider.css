@@ -1,0 +1,7 @@
+.section-divider {
+  position: relative;
+  width: 80%;
+  height: 2px;
+  margin: 3rem auto;
+  background: currentColor;
+}
