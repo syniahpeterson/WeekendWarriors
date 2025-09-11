@@ -1,5 +1,5 @@
 import "../styles/Contact.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import Calendar from "react-calendar";
@@ -13,6 +13,7 @@ const Contact = () => {
   });
 
   const [date, setDate] = useState(new Date());
+  const [schedule, setSchedule] = useState(false); // Whether user wants to schedule
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -21,18 +22,16 @@ const Contact = () => {
   const [buttonText, setButtonText] = useState("Send Message");
   const [isSending, setIsSending] = useState(false);
 
-  // Update message with appointment date
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      message: prev.message.includes("📅 Appointment Date:")
-        ? prev.message.replace(
-            /📅 Appointment Date:.*/g,
-            `📅 Appointment Date: ${date.toDateString()}`
-          )
-        : `${prev.message}📅 Appointment Date: ${date.toDateString()}\n\n\n`,
-    }));
-  }, [date]);
+  // Only append appointment date if scheduling is selected
+  const getMessageWithDate = () => {
+    let msg = formData.message;
+    // Remove any previous appointment date
+    msg = msg.replace(/\n?📅 Appointment Date: .*/g, "");
+    if (schedule) {
+      msg += `\n📅 Appointment Date: ${date.toDateString()}`;
+    }
+    return msg;
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,14 +44,14 @@ const Contact = () => {
 
     emailjs
       .send(
-        "service_dmkbjwf",
-        "template_3z5eeq8",
+        "service_k74crms",
+        "template_p4smevy",
         {
           from_name: formData.name,
           from_email: formData.email,
-          message: formData.message,
+          message: getMessageWithDate(),
         },
-        "NuKnc-hkHUxr1EKl7"
+        "8pY7RGVZ4qrFglR2W"
       )
       .then(
         () => {
@@ -82,7 +81,7 @@ const Contact = () => {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Get In Touch
+        Contact Us!
       </motion.h2>
 
       <motion.p
@@ -130,23 +129,41 @@ const Contact = () => {
             autoComplete="off"
             required
           />
+          <label
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              margin: "0.5rem 0",
+            }}
+          >
+            <input
+              type="checkbox"
+              checked={schedule}
+              onChange={(e) => setSchedule(e.target.checked)}
+              style={{ accentColor: "var(--color-green-accent)" }}
+            />
+            Schedule an appointment?
+          </label>
           <button type="submit" disabled={isSending}>
             {buttonText}
           </button>
         </motion.form>
 
-        {/* Calendar */}
-        <motion.div
-          className="contact__calendar"
-          initial={{ opacity: 0, x: 50 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          <Calendar onChange={setDate} value={date} />
-          <p className="selected-date">
-            📅 Selected Date: {date.toDateString()}
-          </p>
-        </motion.div>
+        {/* Calendar only if scheduling */}
+        {schedule && (
+          <motion.div
+            className="contact__calendar"
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            <Calendar onChange={setDate} value={date} />
+            <p className="selected-date">
+              📅 Selected Date: {date.toDateString()}
+            </p>
+          </motion.div>
+        )}
       </div>
     </section>
   );

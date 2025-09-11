@@ -1,0 +1,51 @@
+/* Footer container layout and appearance */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: #111;
+  color: var(--primary-yellow, #ffd700);
+  font-size: 0.9rem;
+  border-top: 2px solid currentColor;
+  gap: 1rem;
+}
+
+/* Copyright text */
+.footer p {
+  margin: 0;
+}
+
+/* Animated scroll-to-top button */
+.footer__to-top {
+  background: none;
+  border: 2px solid;
+  border-color: currentColor;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  animation: mowerColors 8s linear infinite;
+  will-change: border-color;
+}
+
+.footer__to-top svg {
+  color: #fff;
+  transition: color 0.3s;
+}
+
+/* Contact email link */
+.footer__email {
+  color: var(--color-green-accent);
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 1rem;
+  transition: color 0.3s;
+}
+/* Email link hover state */
+.footer__email:hover {
+  color: var(--color-accent-gold);
+  text-decoration: underline;
+}
