@@ -1,34 +1,54 @@
-// Custom React hook to track which section is currently active based on scroll position
+// useActiveSection: Returns the ID of the section most visible in the viewport for nav highlighting
 import { useEffect, useState } from "react";
 
 export default function useActiveSection(sectionIds) {
-  // State to hold the currently active section ID
-  const [activeId, setActiveId] = useState("home");
+  const [activeId, setActiveId] = useState(sectionIds[0]);
 
   useEffect(() => {
-    // Set up an IntersectionObserver to watch section visibility
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Update activeId when a section is at least 60% visible
-            setActiveId(entry.target.id);
+    // On scroll, determine which section is most visible or if at top/bottom
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+
+      // Highlight first section at top
+      if (scrollY < 10) {
+        setActiveId(sectionIds[0]);
+        return;
+      }
+      // Highlight last section at bottom
+      if (windowHeight + scrollY >= docHeight - 10) {
+        setActiveId(sectionIds[sectionIds.length - 1]);
+        return;
+      }
+
+      // Otherwise, find the most visible section
+      let mostVisible = null;
+      let maxRatio = 0;
+      sectionIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          const visibleHeight = Math.max(
+            0,
+            Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0)
+          );
+          const ratio = visibleHeight / rect.height;
+          if (ratio > maxRatio && ratio > 0.3) {
+            maxRatio = ratio;
+            mostVisible = id;
           }
-        });
-      },
-      { threshold: 0.6 }
-    );
+        }
+      });
+      if (mostVisible) {
+        setActiveId(mostVisible);
+      }
+    };
 
-    // Observe each section by ID
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    // Clean up observer on unmount
-    return () => observer.disconnect();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [sectionIds]);
 
-  // Return the currently active section ID
   return activeId;
 }

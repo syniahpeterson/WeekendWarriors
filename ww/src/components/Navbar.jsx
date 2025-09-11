@@ -1,3 +1,4 @@
+// Navbar: Responsive navigation bar with animated brand and active link highlighting
 import "../styles/Navbar.css";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -12,6 +13,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar" role="navigation" aria-label="Main Navigation">
+      {/* Brand logo and title */}
       <a
         href="#home"
         className="navbar__brand"
@@ -31,6 +33,7 @@ const Navbar = () => {
         <h2 className="navbar__title">Weekend Warriors</h2>
       </a>
 
+      {/* Desktop navigation links */}
       <ul className="navbar__links">
         {sectionIds.map((id) => (
           <li key={id}>
@@ -41,6 +44,7 @@ const Navbar = () => {
         ))}
       </ul>
 
+      {/* Mobile menu toggle button */}
       <button
         className="navbar__toggle"
         onClick={() => setIsOpen(!isOpen)}
@@ -50,6 +54,7 @@ const Navbar = () => {
         {isOpen ? <FiX /> : <FiMenu />}
       </button>
 
+      {/* Mobile dropdown menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.ul

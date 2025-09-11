@@ -6,14 +6,18 @@
 }
 
 body {
-  /* Set main font and background color */
   font-family: "Inter", sans-serif;
   background-color: var(--color-bg-dark);
   color: var(--color-text-main);
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  width: 100vw;
+  max-width: 100vw;
 }
 
 html {
-  /* Enable smooth scrolling for anchor links */
   scroll-behavior: smooth;
   scroll-padding-top: 50px;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
